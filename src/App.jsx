@@ -229,25 +229,25 @@ function SectionVisual({ slide }) {
       </div>
     ),
     feasibility: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: 240 }}>
-        {[['Year 1', '+$6.3K', 53, acc], ['Year 2', '+$20K', 75, acc], ['Year 3', '+$38K', 100, '#00D9B1']].map(([yr, val, pct, clr]) => (
-          <div key={yr}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: 5, fontFamily: 'DM Mono, monospace' }}>
-              <span style={{ color: '#8888AA' }}>{yr}</span><span style={{ color: clr }}>{val}</span>
-            </div>
-            <div style={{ height: 8, borderRadius: 4, background: '#ffffff0A' }}>
-              <div style={{ width: `${pct}%`, height: '100%', borderRadius: 4, background: `linear-gradient(90deg, ${clr}, #00D9B1)` }} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: 260 }}>
+        {[
+          { icon: '👥', label: 'Team', value: '6 Developers', sub: 'Frontend · Backend · AI · Mobile' },
+          { icon: '☁️', label: 'Infrastructure', value: 'VPS → Cloud', sub: 'AWS / Azure ready' },
+          { icon: '⚙️', label: 'Automation', value: 'n8n Workflows', sub: '70% admin load reduced' },
+          { icon: '🔄', label: 'Deployment', value: 'CI/CD Pipeline', sub: 'Zero downtime updates' },
+          { icon: '📊', label: 'Monitoring', value: 'Grafana + Prometheus', sub: 'Real-time system health' },
+        ].map(({ icon, label, value, sub }) => (
+          <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderRadius: 12, background: `${acc}0A`, border: `1px solid ${acc}20` }}>
+            <div style={{ fontSize: 20, flexShrink: 0 }}>{icon}</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.7rem', fontFamily: 'DM Mono, monospace', color: '#8888AA' }}>{label}</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: acc, fontFamily: 'Syne, sans-serif' }}>{value}</span>
+              </div>
+              <div style={{ fontSize: '0.62rem', color: '#555566', fontFamily: 'DM Mono, monospace', marginTop: 2 }}>{sub}</div>
             </div>
           </div>
         ))}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 8 }}>
-          {[['ROI', '17.2%'], ['Payback', '~1 yr']].map(([l, v]) => (
-            <div key={l} style={{ padding: '10px', borderRadius: 12, textAlign: 'center', background: `${acc}0D`, border: `1px solid ${acc}22` }}>
-              <div style={{ fontSize: '1.2rem', fontWeight: 800, color: acc, fontFamily: 'Syne, sans-serif' }}>{v}</div>
-              <div style={{ fontSize: '0.65rem', color: '#8888AA', fontFamily: 'DM Mono, monospace' }}>{l}</div>
-            </div>
-          ))}
-        </div>
       </div>
     ),
     risks: (
@@ -528,8 +528,8 @@ function DiagramImage({ slide }) {
             alt={slide.title.join(' ')}
             onError={() => setStage(s => s + 1)}
             style={{
-              display: 'block', width: '100%', maxHeight: '65vh',
-              objectFit: 'contain', padding: '0.5rem',
+              display: 'block', width: '100%', height: '62vh',
+              objectFit: 'cover', objectPosition: 'center center',
             }}
           />
         )}
