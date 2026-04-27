@@ -83,7 +83,7 @@ function Slide({ slide, index }) {
             onClick={() => document.getElementById('problem-section')?.scrollIntoView({ behavior: 'smooth' })}
           >Explore Presentation ↓</button>
           <button style={{ padding: '0.75rem 1.75rem', borderRadius: 12, background: 'transparent', color: '#C8C8DC', border: `1px solid ${acc}44`, fontFamily: 'Syne, sans-serif', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer' }}
-          onClick={() => window.open('https://aim-website-yousefalgharasis-projects.vercel.app/pages/dashboard.html', '_blank')}
+          onClick={() => window.open('https://aim-website-demo.vercel.app/pages/dashboard.html', '_blank')}
           >
             View Demo →
           </button>
