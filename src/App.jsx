@@ -82,9 +82,7 @@ function Slide({ slide, index }) {
             style={{ padding: '0.75rem 1.75rem', borderRadius: 12, background: acc, color: '#fff', border: 'none', fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer' }}
             onClick={() => document.getElementById('problem-section')?.scrollIntoView({ behavior: 'smooth' })}
           >Explore Presentation ↓</button>
-          <button style={{ padding: '0.75rem 1.75rem', borderRadius: 12, background: 'transparent', color: '#C8C8DC', border: `1px solid ${acc}44`, fontFamily: 'Syne, sans-serif', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer' }}
-          onClick={() => window.open('https://aim-website-demo.vercel.app/pages/dashboard.html', '_blank')}
-          >
+          <button style={{ padding: '0.75rem 1.75rem', borderRadius: 12, background: 'transparent', color: '#C8C8DC', border: `1px solid ${acc}44`, fontFamily: 'Syne, sans-serif', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer' }}>
             View Demo →
           </button>
         </div>
@@ -456,7 +454,123 @@ function SectionVisual({ slide }) {
   )
 }
 
+// ─── Image panel shown for slides that have an `image` property ───────────────
+function DiagramImage({ slide }) {
+  const ref = useRef()
+  // 0 = try real image, 1 = try svg fallback, 2 = show built-in placeholder
+  const [stage, setStage] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    gsap.fromTo(el, { opacity: 0, scale: 0.92, y: 20 }, {
+      opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none reverse' }
+    })
+  }, [])
+
+  const acc = slide.accent || '#7C5CFC'
+  const src = stage === 0 ? slide.image : slide.imageFallback
+  const showPlaceholder = stage >= 2
+
+  const diagramName = slide.image?.split('/').pop() || 'diagram.png'
+
+  return (
+    <div ref={ref} style={{ opacity: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center' }}>
+      {/* glowing frame */}
+      <div style={{
+        position: 'relative', width: '100%', borderRadius: 16,
+        background: '#0A0A12', border: `1px solid ${acc}44`,
+        boxShadow: `0 0 40px ${acc}18, 0 0 0 1px ${acc}22`,
+        overflow: 'hidden', minHeight: 260,
+        display: 'flex', flexDirection: 'column',
+      }}>
+        {/* accent top bar */}
+        <div style={{ height: 3, background: `linear-gradient(90deg, ${acc}, transparent)`, flexShrink: 0 }} />
+
+        {showPlaceholder ? (
+          /* ── built-in placeholder (no img tag = no broken icon ever) ── */
+          <div style={{
+            flex: 1, display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            padding: '2.5rem 2rem', gap: 16,
+          }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%',
+              background: `${acc}14`, border: `1px solid ${acc}33`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 28,
+            }}>🖼️</div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, color: acc, fontSize: '0.9rem', marginBottom: 6 }}>
+                {slide.title.join(' ')}
+              </div>
+              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.68rem', color: '#8888AA', lineHeight: 1.8 }}>
+                Add your diagram file to:
+              </div>
+              <div style={{
+                fontFamily: 'DM Mono, monospace', fontSize: '0.72rem',
+                color: acc, marginTop: 6, padding: '6px 16px',
+                borderRadius: 8, background: `${acc}10`, border: `1px solid ${acc}22`,
+                display: 'inline-block',
+              }}>
+                public/diagrams/{diagramName}
+              </div>
+              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.62rem', color: '#555566', marginTop: 8 }}>
+                .png · .jpg · .svg all work
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* ── real image ── */
+          <img
+            src={src}
+            alt={slide.title.join(' ')}
+            onError={() => setStage(s => s + 1)}
+            style={{
+              display: 'block', width: '100%', maxHeight: '65vh',
+              objectFit: 'contain', padding: '0.5rem',
+            }}
+          />
+        )}
+
+        {/* corner badge */}
+        <div style={{
+          position: 'absolute', top: 12, right: 12,
+          fontFamily: 'DM Mono, monospace', fontSize: '0.6rem',
+          padding: '3px 10px', borderRadius: 20,
+          background: acc + '22', border: `1px solid ${acc}44`, color: acc,
+        }}>{slide.tag}</div>
+      </div>
+
+      {/* caption */}
+      {slide.imageCaption && (
+        <p style={{
+          fontFamily: 'DM Mono, monospace', fontSize: '0.68rem',
+          color: '#8888AA', textAlign: 'center', maxWidth: 460, lineHeight: 1.6,
+        }}>
+          {slide.imageCaption}
+        </p>
+      )}
+    </div>
+  )
+}
+
 function Section({ slide, index }) {
+  const isImageSlide = !!slide.image
+
+  if (isImageSlide) {
+    // wide layout: text left (narrow) · image right (wide)
+    return (
+      <section id={slide.id + '-section'} style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '10vh 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '3rem', alignItems: 'center' }}>
+          <div><Slide slide={slide} index={index} /></div>
+          <div><DiagramImage slide={slide} /></div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section id={slide.id + '-section'} style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '10vh 2rem' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
