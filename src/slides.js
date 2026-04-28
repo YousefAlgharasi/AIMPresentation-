@@ -2,7 +2,7 @@ export const slides = [
   {
     id: 'hero',
     tag: null,
-    title: ['The Future of', 'Learning is', 'Intelligent'],
+    title: ['Academic', 'Intelligence Minds', 'AIM'],
     titleAccent: [false, false, true],
     bullets: null,
     accent: '#7C5CFC',
