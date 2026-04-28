@@ -212,7 +212,7 @@ function SectionVisual({ slide }) {
         <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '1px solid #00D9B122' }} />
         <div style={{ position: 'absolute', inset: 24, borderRadius: '50%', border: '1px solid #7C5CFC22' }} />
         <div style={{ position: 'absolute', inset: 48, borderRadius: '50%', border: '1px solid #00D9B133' }} />
-        {['React', 'Flutter', 'Node', 'n8n', 'GPT', 'Firebase'].map((t, i) => {
+        {['React', 'Flutter', 'Node', 'Supabase', 'Dart', 'Colab'].map((t, i) => {
           const angle = (i / 6) * Math.PI * 2 - Math.PI / 2
           const r = 108
           return (
