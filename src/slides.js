@@ -6,7 +6,7 @@ export const slides = [
     titleAccent: [false, false, true],
     bullets: null,
     accent: '#7C5CFC',
-    sub: 'AI-Powered Educational Platform · Web & Mobile · Voice Interaction · n8n Automation',
+    sub: 'AI-Powered Educational Platform · Web & Mobile · Voice Interaction',
   },
   {
     id: 'problem',
@@ -79,8 +79,8 @@ export const slides = [
     bullets: [
       '① Planning — Feasibility, stakeholder mapping, scope definition',
       '② Requirements — Interviews, observation, document analysis',
-      '③ Design — Architecture, UML, ERD, DFD, n8n flows, UI/UX',
-      '④ Sprint 1 — AI lesson delivery via ChatGPT API',
+      '③ Design — Architecture, UML, ERD, DFD, UI/UX',
+      '④ Sprint 1 — AI lesson delivery via AI Model',
       '⑤ Sprint 2 — Adaptive assessments + instant feedback',
       '⑥ Sprint 3 — Student & admin dashboards',
       '⑦ Sprint 4 — Full automation, reporting & final testing',
@@ -92,12 +92,12 @@ export const slides = [
     title: ['Built on', 'Modern Tools'],
     accent: '#00D9B1',
     bullets: [
-      '⚛️ React 18 + Vite — fast, modern web frontend',
+      '⚛️ React 18 + Node.js — fast, modern web frontend',
       '📱 Flutter + Dart — cross-platform mobile',
       '🟢 Node.js + Express — RESTful backend',
       '🐍 Python — AI processing layer',
-      '🔥 Firebase + MySQL — cloud database',
-      '🤖 ChatGPT API + STT/TTS — voice & intelligence',
+      '🔥 Supabase — cloud database',
+      '🤖 Model API + STT/TTS — voice & intelligence',
     ],
   },
   {
@@ -121,7 +121,7 @@ export const slides = [
     accent: '#FF4D6D',
     bullets: [
       '🔴 Requirements drift → iterative validation sprints',
-      '🔴 Integration bugs (n8n) → early testing + audit logs',
+      '🔴 Integration bugs → early testing + audit logs',
       '🔴 Security breach → AES-256, MFA, audit trails',
       '🟡 Scalability → VPS → AWS/Azure migration plan',
       '🟡 Team pressure → cross-training + task rotation',
@@ -154,7 +154,6 @@ export const slides = [
       '🦉 Duolingo — Gamified language learning, very narrow scope',
       '❌ All three: no Arabic voice interaction support',
       '❌ All three: no n8n-powered admin automation',
-      '❌ All three: no real-time ChatGPT adaptive tutoring',
       '✅ AIM — AI-native, bilingual, voice-first & fully automated',
     ],
   },
@@ -181,7 +180,7 @@ export const slides = [
     bullets: [
       '🔐 FR1 — Auth & Roles: Email/OTP/SSO, RBAC, MFA support',
       '🧠 FR2 — AI Placement: Level test ≤ 10 min, adaptive study plan',
-      '📖 FR3 — AI Tutoring: ChatGPT chat, voice Q&A, STT/TTS bilingual',
+      '📖 FR3 — AI Tutoring: AI model chat, voice Q&A, STT/TTS bilingual',
       '📦 FR4 — Content Mgmt: Upload lessons, videos, quizzes, CDN delivery',
       '📝 FR5 — Assessments: Auto-graded quizzes, AI feedback, certificates',
       '📊 FR6 — Dashboards: Student progress, instructor analytics, admin KPIs',
@@ -230,12 +229,11 @@ export const slides = [
     accent: '#7C5CFC',
     image: '/diagrams/uml_usecase.jpg',
     imageFallback: '/diagrams/uml_usecase.svg',
-    imageCaption: 'Shows actors (Student · Instructor · Admin) and all system use cases',
+    imageCaption: 'Shows actors (Student · STT · TTS) and all system use cases',
     bullets: [
       '👤 Student: Login, Placement Test, Access Lessons, Submit Quiz, Chat',
-      '👨‍🏫 Instructor: Upload Content, Review Assessments, View Analytics',
-      '🏛️ Admin: Manage Users, Generate Reports, Configure System',
-      '🔗 Extends: MFA, Voice Q&A, Adaptive Difficulty, Parental Consent',
+      '👨‍🏫 STT: Upload Content, Review Assessments, View Analytics',
+      '🔗 TTS: MFA, Voice Q&A, Adaptive Difficulty, Parental Consent',
     ],
   },
   // ─── CONCLUSION ───────────────────────────────────────────────────
@@ -246,7 +244,6 @@ export const slides = [
     accent: '#00D9B1',
     bullets: [
       '🎯 Solves 9 real problems in traditional education',
-      '💡 Novel: ChatGPT + n8n adaptive learning pipeline',
       '🌍 Built for Arabic-speaking learners in the Middle East',
       '📱 Works on web, mobile, and offline',
       '💰 Viable: 17.2% ROI, 1-year payback period',
