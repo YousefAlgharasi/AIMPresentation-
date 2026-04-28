@@ -231,7 +231,7 @@ function SectionVisual({ slide }) {
     feasibility: (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: 260 }}>
         {[
-          { icon: '👥', label: 'Team', value: '6 Developers', sub: 'Frontend · Backend · AI · Mobile' },
+          { icon: '👥', label: 'Team', value: '4 Developers', sub: 'Frontend · Backend · AI · Mobile' },
           { icon: '☁️', label: 'Infrastructure', value: 'VPS → Cloud', sub: 'AWS / Azure ready' },
           { icon: '⚙️', label: 'Automation', value: 'n8n Workflows', sub: '70% admin load reduced' },
           { icon: '🔄', label: 'Deployment', value: 'CI/CD Pipeline', sub: 'Zero downtime updates' },
@@ -528,8 +528,10 @@ function DiagramImage({ slide }) {
             alt={slide.title.join(' ')}
             onError={() => setStage(s => s + 1)}
             style={{
-              display: 'block', width: '100%', height: '62vh',
-              objectFit: 'cover', objectPosition: 'center center',
+              display: 'block', width: '100%', maxHeight: '62vh',
+              objectFit: 'contain',
+              background: '#ffffff',
+              padding: '1rem',
             }}
           />
         )}
